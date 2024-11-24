@@ -44,6 +44,7 @@ import { exit } from 'ionicons/icons';
 import { computed, ref } from 'vue';
 import TabsMenu from '@/components/TabsMenu.vue';
 import { useAuthStore } from '@/stores/auth';
+import { watch } from 'vue';
 
 const authStore = useAuthStore();
 const user = computed(() => authStore.user);
@@ -52,7 +53,17 @@ const logout = () => {
     authStore.logout();
 };
 
+
+
 const userPhoto = ref(user.value?.photoURL || 'https://lh3.googleusercontent.com/a/ACg8ocL3xVQq4XGwls7BfaJpRxmYtDy_SIjjS3EJbfB2Ag8EIA7QKTA=s720-c-no');
+
+watch(
+    () => user.value?.photoURL,
+    (newPhoto) => {
+        userPhoto.value = newPhoto || '';
+    },
+    { immediate: true }
+);
 
 function handleImageError() {
     userPhoto.value = 'https://lh3.googleusercontent.com/a/ACg8ocL3xVQq4XGwls7BfaJpRxmYtDy_SIjjS3EJbfB2Ag8EIA7QKTA=s720-c-no';
