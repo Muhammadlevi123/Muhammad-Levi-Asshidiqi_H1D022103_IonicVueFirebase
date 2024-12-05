@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import HomePage from '@/views/HomePage.vue';
+import HomePage from '@/views/adm/HomePage.vue';
 import LoginPage from '@/views/LoginPage.vue';
 import { useAuthStore } from '@/stores/auth';
 import ProfilePage from '@/views/ProfilePage.vue';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '@/utils/firebase';
+import AddForm from '@/views/adm/AddForm.vue';
+import EditForm from '@/views/adm/EditForm.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: '/home',
+    path: '/adm/home',
     name: 'home',
     component: HomePage,
     meta: {
@@ -36,6 +38,18 @@ const routes: Array<RouteRecordRaw> = [
       isAuth: true,
     },
   },
+
+  {
+    path: "/adm/home/addform",
+    name: "addform",
+    component: AddForm,
+  },
+  {
+    path: "/adm/home/editform",
+    name: "editform",
+    component: EditForm,
+  }
+
 ];
 
 const router = createRouter({

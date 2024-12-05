@@ -19,7 +19,7 @@ export const useAuthStore = defineStore('auth', () => {
     const loginWithGoogle = async () => {
         try {
             await GoogleAuth.initialize({
-                clientId: '256301916073-blrk3m5qrolpk6hamm3a7l38n3kfhji3.apps.googleusercontent.com',
+                clientId: '1051126638225-vfb9q6isb61cq79j78655amofuk8ngjv.apps.googleusercontent.com',
                 scopes: ['profile', 'email'],
                 grantOfflineAccess: true,
             });
@@ -34,7 +34,7 @@ export const useAuthStore = defineStore('auth', () => {
 
             user.value = result.user;
 
-            router.push("/home");
+            router.push("/adm/home");
         } catch (error) {
             console.error("Google sign-in error:", error);
             
